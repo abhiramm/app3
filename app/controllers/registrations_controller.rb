@@ -12,11 +12,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    new_performer_path
+    edit_user_registration_path
   end
   
   def after_update_path_for(resource)
-    performers_path
+    performers_performer_dashboard_path
   end
 end
                                                                                                                      

@@ -2,13 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name %>
-    <%= f.input :white_label_id %>
-    <%= f.input :location_id %>
-    <%= f.file_field :avatar %>
-    <%# f.input :location %>
+    <%# f.input :first_name %>
+    <%# f.input :white_label_id %>
+    <%# f.input :location_id %>
+
     <%= f.label "Categories" %>
     <%= f.association :clip_categories, :label => "Categories", :wrapper_html => { :id => "categories_multiselect", :multiselect => true }%>
+    <%# f.file_field :avatar %>
+    <%# f.input :location %>
     <%= f.input :photo_id %>
     <%= f.input :profile_thumb %>
     <%= f.input :profile_gif %>

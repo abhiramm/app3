@@ -74,10 +74,11 @@ class PerformersController < ApplicationController
    params.require(:performer).permit(:first_name, :white_label_id, :location_id, :avatar, :location, :photo_id, :profile_thumb, :profile_gif, :amount)
  end
 
-    def price
+    def performer_dashboard
       @performers = Performer.all
 
     end
+   
 
   private
     # Use callbacks to share common setup or constraints between actions.
