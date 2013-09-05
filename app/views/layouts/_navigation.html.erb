@@ -3,7 +3,7 @@
   <% if user_signed_in? %>
   <% if !Performer.last.id.nil? %>
     <li>
-      <%= link_to raw("Dashboard"), performer_path(:id => Performer.last ), :method => :get %>
+      <%# link_to raw("Dashboard"), performer_path(:id => Performer.last ), :method => :get %>
     </li>
   <% end %>
     <li>

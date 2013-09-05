@@ -1,6 +1,6 @@
 class PerformersController < ApplicationController
  # layout "admin"
-  before_action :set_performer, only: [:show, :edit, :update, :destroy]
+  before_action :set_performer, only: [:show, :edit, :update, :destroy], except: [:price]
   before_filter :authenticate_user!
   # GET /performers
   # GET /performers.json
@@ -11,7 +11,7 @@ class PerformersController < ApplicationController
   # GET /performers/1
   # GET /performers/1.json
   def show
-
+    @performer = Performer.find(params[:id])
   end
 
   # GET /performers/new
@@ -75,7 +75,8 @@ class PerformersController < ApplicationController
  end
 
     def price
-      
+      @performers = Performer.all
+
     end
 
   private

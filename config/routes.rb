@@ -1,7 +1,7 @@
 Custom::Application.routes.draw do
   resources :custom_videos
 
-  resources :performers
+
 
   resources :orders
   resources :item_categories
@@ -12,6 +12,7 @@ Custom::Application.routes.draw do
   resources :users
   match 'get_image', to: 'home#get_image', via: [:get, :post]
   match "performers/update_amount", to: 'performers#update_amount', via: [:get, :post]
-  match "performers/price", to: 'performers#price', via: [:get,:post]
- # get '/performers/price', :controller => 'performers', :action => 'price'
+  match "performers/price", to: 'performers#price', via: [:get, :post]
+    resources :performers
+  #get 'performers/price', :controller => 'performers', :action => 'price'
 end
