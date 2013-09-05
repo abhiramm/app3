@@ -9,6 +9,7 @@
       <th>Quality</th>
       <th>Delivery</th>
       <th>Category</th>
+      <th>Select a video to upload for the order</th>
       <th></th>
       <th></th>
       <th></th>
@@ -24,6 +25,7 @@
         <td><%= order.quality.name %></td>
         <td><%= order.delivery_time.duration %></td>
         <td><%= order.clip_category.name %></td>
+        <td><%= render 'form_video'%></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

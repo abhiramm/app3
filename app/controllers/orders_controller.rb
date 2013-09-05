@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+            @custom_video = CustomVideo.new
+
   end
 
   # GET /orders/1
