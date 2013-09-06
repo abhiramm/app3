@@ -12,9 +12,9 @@
   <%= f.fields_for :performer, @user.performer do |per| %>
       <%= per.input :first_name %>
       <%# per.input :white_label_id %>
-      <%# per.input :location_id %>
+      <%= per.association :location, :collection => Location.all, :prompt => "Location" %>
       <%= per.input :avatar %>
-      <%# f.input :location %>
+      <%# per.input :location %>
       <%= per.label "Categories" %>
       <%= per.association :clip_categories, :label => "Categories", :wrapper_html => { :id => "categories_multiselect", :multiselect => true }%>
       <%= per.input :photo_id %>

@@ -20,7 +20,14 @@ class ApplicationController < ActionController::Base
      "application"
     end
   end
-
+  
+   def after_sign_in_path_for(resource_or_scope)
+      if current_user.has_role? :admin
+        admin_dashboard_path
+      else
+        performers_performer_dashboard_path
+      end 
+   end
 
  
   protected
@@ -28,7 +35,7 @@ class ApplicationController < ActionController::Base
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :email, :password, :password_confirmation, :current_password, :performer_attributes => [:first_name, :avatar, :photo_id, :profile_thumb, :profile_gif, :photo_id, :avatar, :id, :clip_category_performers_attributes => [:id, :clip_category_ids]])
+      u.permit(:name, :email, :password, :password_confirmation, :current_password, :role_ids,  :performer_attributes => [:first_name, :avatar, :photo_id, :profile_thumb, :profile_gif, :photo_id, :location_id, :avatar, :id , :clip_category_performers_attributes => [:id, :clip_category_ids]])
     end
         Rails.logger.info'****************************************'
 
