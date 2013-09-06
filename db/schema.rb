@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20130906025747) do
 
   create_table "clip_categories", force: true do |t|
     t.string   "name"
-    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20130906025747) do
 
   create_table "durations", force: true do |t|
     t.string   "time"
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,20 +1,25 @@
 <div class="content">
-    <%= form_tag get_image_path, remote: true, id: 'home_form' do  %>
         <%= label_tag 'SELECT MODEL LOCATION' %>
         <%= collection_select :order, :location_id, Location.all, :id, :name, prompt: true %>
+
         <%= label_tag 'SELECT YOUR MODEL' %>
         <%= grouped_collection_select :order, :performer_id, Location.order(:name), :performers, :name, :id, :first_name, include_blank: true %>
+
         <%= label_tag 'SELECT YOUR CATEGORY' %>
         <%= grouped_collection_select :order, :category_id, Performer.order(:first_name), :clip_categories, :first_name, :id, :name, include_blank: true %>
+
         <%= label_tag 'SELECT YOUR DURATION' %>
         <%= grouped_collection_select :order, :duration_id, Performer.order(:first_name), :durations, :first_name, :id, :time, include_blank: true %>
+
         <%= label_tag 'SELECT YOUR QUALITY' %>
         <%= grouped_collection_select :order, :quality_id, Performer.order(:first_name), :qualities, :first_name, :id, :name, include_blank: true %>
+
         <%= label_tag 'SELECT YOUR DELIVERY TIME' %>
         <%= grouped_collection_select :order, :delivery_id, Performer.order(:first_name), :delivery_times, :first_name, :id, :duration, include_blank: true %>
+
         <%= label_tag 'WRITE YOUR DESCRIPTION' %>
         <%= text_area_tag :description, nil, rows: 8 %>
-    <% end %>
+
         <%= button_tag 'Order now', class: 'btn-large btn-inverse' %>
 </div>
 

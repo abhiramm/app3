@@ -45,7 +45,6 @@ jQuery ->
         $('#order_clip_category_id').empty()
 
   performer_change = ->
-    $("#order_form").submit()
     performer_category()
     performer_duration()
     performer_quality()
@@ -75,4 +74,11 @@ jQuery ->
 
   $('#order_performer_id').change ->
     performer_change()
-
+    console.log "before ajax"
+    console.log $("#order_performer_id option:selected").val()
+    $.ajax
+      url: "get_image"
+      type: "GET"
+      data:
+        performer_id: $("#order_performer_id option:selected").val()
+    console.log "hi"
