@@ -7,7 +7,7 @@
     <li><a href="#tab4" data-toggle="tab">Section 4</a></li>
     </ul>
     <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
+      <div class="tab-pane active" id="tab1">
     <p>
   <strong>First name:</strong>
   <%= @performer.first_name %>
@@ -20,7 +20,7 @@
 
 <p>
   <strong>Location:</strong>
-  <%= @performer.location_id %>
+  <%= @performer.location.name %>
 </p>
 
 <p>
@@ -30,8 +30,8 @@
 </p>
 
 <p>
-  <strong>Location:</strong>
-  <%= @performer.location %>
+  <!--<strong>Location:</strong>
+  <%# @performer.location %>-->
 </p>
 
 <p>
@@ -49,8 +49,8 @@
 </p>
 
 </p>
-    </div>
-    <div class="tab-pane" id="tab2">
+</div>
+<div class="tab-pane" id="tab2">
     <p><% @performer.clip_categories.each do |category| %>
   <div class="clean">
   <%= form_tag "update_amount", :remote => :true do %>
@@ -62,10 +62,50 @@
   </div>
 <% end %></p>
     </div>
+    
+    
     <div class="tab-pane" id="tab3">
-</div>
+     <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+             
+              <%= f.label :clip_categories %>
+              <div class="controls">
+                  <% ClipCategory.all.each do |category| %>
+                      <%= check_box_tag "performer[clip_category_ids][]", category.id, @performer.clip_category_ids.include?(category.id) %>
+                      <%= category.name %><br />
+                  <% end %>
+             </div>
+
+             </div>
+          
+            <div class="form-actions">
+              <%= f.button :submit %>
+            </div>
+          <% end %>
+
+      </div>
     <div class="tab-pane" id="tab4">
-</div>
+      <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+             
+              <%= f.label :quality %>
+              <div class="controls">
+                  <% Quality.all.each do |quality| %>
+                      <%= check_box_tag "performer[quality_ids][]", quality.id, @performer.quality_ids.include?(quality.id) %>
+                      <%= quality.name %><br />
+                  <% end %>
+             </div>
+
+             </div>
+          
+            <div class="form-actions">
+              <%= f.button :submit %>
+            </div>
+          <% end %>
+
+    </div>
     </div>
     </div>
 

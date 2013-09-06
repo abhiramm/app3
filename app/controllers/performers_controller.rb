@@ -11,7 +11,7 @@ class PerformersController < ApplicationController
   # GET /performers/1
   # GET /performers/1.json
   def show
-    @performer = Performer.find(params[:id])
+    @performer = current_user.performer
   end
 
   # GET /performers/new
@@ -71,7 +71,7 @@ class PerformersController < ApplicationController
   end
  def performer_params
 #  params.require(:performer).permit(:first_name, :white_label_id, :location_id, :avatar, :location, :photo_id, :profile_thumb, :profile_gif, :amount, :clip_category_performers_attributes => [:id, :clip_category_ids, :performer_ids, :amount], :clip_categories_attributes => [:id, :name, :amount])
-   params.require(:performer).permit(:first_name, :white_label_id, :location_id, :avatar, :location, :photo_id, :profile_thumb, :profile_gif, :amount)
+params.require(:performer).permit(:first_name, :white_label_id, :location_id, :avatar, :location, :photo_id, :profile_thumb, :profile_gif, :amount, :clip_category_ids => [], :quality_ids => [])
  end
 
     def performer_dashboard
