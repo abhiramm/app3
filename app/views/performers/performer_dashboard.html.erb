@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Custom" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Custom4u" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar-inverse navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <div class="row">
-            <div class="span5">
-              <%= image_tag('custom4u-logo.png')%>
-            </div>
-            <div class="span7 pull-right">
-              <div class="nav-collapse collapse">
-                <nav role="navigation">
-                  <ul class="menu nav pull-right">
-                      <li><a href="http://www.customs4u.com/how-it-works">How it Works?</a></li>
-                      <li><a href="http://www.customs4u.com/dashboard">Dashboard</li>
-                      <li><a href="http://www.customs4u.com/user/logout">Logout</li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-     </div> 
-    <section class="span12">                                                              
+<section class="span12">                                                              
       <div class="container">
         <div class="row">
-          <div class="span4 clip btn-dark">
-            <a class="" href="http://www.customs4u.com/admin/people/p2rp-create/performer">
-              <%=image_tag('addperformer.png')%>
-              <span>Add Performer</span>
-            </a>
-          </div>
+          
 
         <div class="span4 clip btn-dark">
-          <a class="btn-dark" href="http://www.customs4u.com/performer/manage">
-            <%= image_tag('manage_performer.png')%>
-            <span>Manage Performers</span>
+          <%= image_tag('allorders.png') %>
+          <span><%= link_to 'My clip sales', orders_path %></span>
+        </div>
+
+        <div class="span4 clip btn-dark">
+            <%=image_tag('addperformer.png')%>
+            <span><%= link_to 'Set your clip prices', performer_path(:id => current_user.performer) %></span>
+
+          </div>
+        
+          <div class="span4 clip btn-dark">
+          <a class="btn-dark" href="#">
+            <%= image_tag('make_payments.png') %>
+            <span>My payouts</span>
           </a>
         </div>
-  
+        
+
         <div class="span4 clip btn-dark">
           <a class="btn-dark" href="http://www.customs4u.com/customer/manage">
-            <%= image_tag('manage_performer.png')%>
-            <span>Manage Customers</span>
+            <%= image_tag('manage-site.png')%>
+            
+            <span><%= link_to 'Edit Account & payout details', edit_user_registration_path %></span>
           </a>
         </div>
+
   
-        <div class="span4 clip btn-dark">
+  <!--      <div class="span4 clip btn-dark">
           <a class="" href="http://www.customs4u.com/manage-site">
             <%= image_tag('manage-site.png')%>
             <span>Manage Site</span>
@@ -65,7 +40,7 @@
   
         <div class="span4 clip btn-dark">
           <a class="btn-dark" href="http://www.customs4u.com/performer-sales">
-            <%= image_tag('all orders.png') %>
+            <%= image_tag('allorders.png') %>
             <span>All Orders</span>
           </a>
         </div>
@@ -109,13 +84,8 @@
             <%= image_tag('manage_markup.png')%>
             <span>Manage Markup</span>
           </a>
-        </div>
+        </div>-->
         
       </div>
     </div>
   </section>
-
-    
- </div>
-  </body>
-</html>

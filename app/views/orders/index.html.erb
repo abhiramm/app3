@@ -1,6 +1,6 @@
 <h1>Listing orders</h1>
 
-<table>
+<table id="order_table">
   <thead>
     <tr>
       <th>Location</th>
@@ -18,7 +18,7 @@
 
   <tbody>
     <% @orders.each do |order| %>
-      <tr>
+     <tr>
         <td><%= order.location.name %></td>
         <td><%= order.performer.first_name %></td>
         <td><%= order.duration.time %></td>
@@ -34,6 +34,12 @@
   </tbody>
 </table>
 
+
+
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<% if user_signed_in?  %>
+  
+<% end %>
+
+<%# link_to 'New Order', new_order_path %>
