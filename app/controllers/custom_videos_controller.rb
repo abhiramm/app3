@@ -28,6 +28,8 @@ class CustomVideosController < ApplicationController
 
     respond_to do |format|
       if @custom_video.save
+        Notificationemail.uploaded_customer(current_user)
+        Notificationemail.uploaded_performer()
         format.html { redirect_to @custom_video, notice: 'Custom video was successfully created.' }
         format.json { render action: 'show', status: :created, location: @custom_video }
       else
