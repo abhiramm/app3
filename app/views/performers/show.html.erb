@@ -1,114 +1,100 @@
 <p id="notice"><%= notice %></p>
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-    <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-    <li><a href="#tab3" data-toggle="tab">Section 3</a></li>
-    <li><a href="#tab4" data-toggle="tab">Section 4</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab1">
-    <p>
-  <strong>First name:</strong>
-  <%= @performer.first_name %>
-</p>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li><a href="#tab3" data-toggle="tab">Category</a></li>
+    <li><a href="#tab4" data-toggle="tab">Quality</a></li>
+    <li><a href="#tab5" data-toggle="tab">Duration</a></li>
+    <li><a href="#tab6" data-toggle="tab">Delivery</a></li>
+  </ul>
+  
+  <div class="tab-content">
+      <div class="tab-pane active" id="tab3">
+          <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
 
-<p>
-  <strong>White label:</strong>
-  <%= @performer.white_label_id %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @performer.location.name %>
-</p>
-
-<p>
-  <strong>Avatar:</strong>
-<%= image_tag @performer.avatar_url(:thumb) if @performer.avatar? %>
-
-</p>
-
-<p>
-  <!--<strong>Location:</strong>
-  <%# @performer.location %>-->
-</p>
-
-<p>
-  <strong>Photo:</strong>
-<%= image_tag @performer.photo_id_url(:thumb) if @performer.photo_id? %></p>
-
-<p>
-  <strong>Profile thumb:</strong>
-  <%= image_tag @performer.profile_thumb_url(:thumb) if @performer.profile_thumb? %>
-</p>
-
-<p>
-  <strong>Profile gif:</strong>
-  <%= image_tag @performer.profile_gif_url(:thumb) if @performer.profile_gif? %>
-</p>
-
-</p>
-</div>
-<div class="tab-pane" id="tab2">
-    <p><% @performer.clip_categories.each do |category| %>
-  <div class="clean">
-  <%= form_tag "update_amount", :remote => :true do %>
-      <%= label_tag "category", category.name, :class => "pull-left" %>
-      <%= number_field_tag "amount", @amount, :class => "pull-left" %>
-      <%= hidden_field_tag "category", category.id %>
-      <%= submit_tag "Update" %>
-    <% end %>
-  </div>
-<% end %></p>
-    </div>
-    
-    
-    <div class="tab-pane" id="tab3">
-     <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
-            <%= f.error_notification %>
-            <div class="form-inputs">
-             
-              <%= f.label :clip_categories %>
-              <div class="controls">
-                  <% ClipCategory.all.each do |category| %>
-                      <%= check_box_tag "performer[clip_category_ids][]", category.id, @performer.clip_category_ids.include?(category.id) %>
-                      <%= category.name %><br />
-                  <% end %>
-             </div>
-
-             </div>
-          
-            <div class="form-actions">
-              <%= f.button :submit %>
+            <%= f.label :clip_categories %>
+            <div class="controls">
+              <% ClipCategory.all.each do |category| %>
+              <%= check_box_tag "performer[clip_category_ids][]", category.id, @performer.clip_category_ids.include?(category.id) %>
+              <%= category.name %><br />
+              <% end %>
             </div>
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
           <% end %>
 
+        </div>
+        <div class="tab-pane" id="tab4">
+          <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+
+            <%= f.label :quality %>
+            <div class="controls">
+              <% Quality.all.each do |quality| %>
+              <%= check_box_tag "performer[quality_ids][]", quality.id, @performer.quality_ids.include?(quality.id) %>
+              <%= quality.name %><br />
+              <% end %>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+
+        </div>
+        <div class="tab-pane" id="tab5">
+          <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+
+            <%= f.label :duration %>
+            <div class="controls">
+              <% Duration.all.each do |duration| %>
+              <%= check_box_tag "performer[duration_ids][]", duration.id, @performer.duration_ids.include?(duration.id) %>
+              <%= duration.time %><br />
+              <% end %>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+
+        </div>
+        <div class="tab-pane" id="tab6">
+          <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+
+            <%= f.label :delivery_time %>
+            <div class="controls">
+              <% DeliveryTime.all.each do |delivery| %>
+              <%= check_box_tag "performer[delivery_time_ids][]", delivery.id, @performer.delivery_time_ids.include?(delivery.id) %>
+              <%= delivery.duration %><br />
+              <% end %>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+          <% end %>
+
+        </div>
       </div>
-    <div class="tab-pane" id="tab4">
-      <%= simple_form_for(@performer,:html => {:multipart => true} ) do |f| %>
-            <%= f.error_notification %>
-            <div class="form-inputs">
-             
-              <%= f.label :quality %>
-              <div class="controls">
-                  <% Quality.all.each do |quality| %>
-                      <%= check_box_tag "performer[quality_ids][]", quality.id, @performer.quality_ids.include?(quality.id) %>
-                      <%= quality.name %><br />
-                  <% end %>
-             </div>
-
-             </div>
-          
-            <div class="form-actions">
-              <%= f.button :submit %>
-            </div>
-          <% end %>
-
-    </div>
-    </div>
     </div>
 
 
-<%= link_to 'Edit', edit_performer_path(@performer) %> |
-<%= link_to 'Back', performers_path %>
+    <%= link_to 'Edit', edit_performer_path(@performer) %> |
+    <%= link_to 'Back', performers_path %>
