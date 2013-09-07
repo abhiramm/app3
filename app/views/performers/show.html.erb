@@ -27,6 +27,17 @@
             <%= f.button :submit %>
           </div>
           <% end %>
+          <% ClipCategory.all.each do |category| %>
+          <div class="clean">
+            <%= form_tag "update_amount", :remote => :true do %>
+                  <%= label_tag "category", category.name, :class => "pull-left" %>
+                  <%= number_field_tag "amount", @amount, :class => "pull-left" %>
+                  <%= check_box_tag "category", category.id, @performer.clip_category_ids.include?(category.id) %>
+                  <%# hidden_field_tag "category", category.id %>
+                  <%= submit_tag "Update" %>
+              <% end %>
+            </div>
+          <% end %>
 
         </div>
         <div class="tab-pane" id="tab4">
