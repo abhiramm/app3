@@ -33,6 +33,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        Notificationemail.order_customer(@order)
+        Notificationemail.order_performer(@order)
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render action: 'show', status: :created, location: @order }
       else
@@ -75,7 +77,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-     params.require(:order).permit(:location_id, :performer_id, :duration_id, :quality_id, :delivery_time_id, :clip_category_id)
+     params.require(:order).permit(:location_id, :performer_id, :duration_id, :quality_id, :delivery_time_id, :clip_category_id,:email)
     end
   def get_image
     @performer = Performer.find(params[:order][:performer_id]) unless params[:order][:performer_id].blank?
