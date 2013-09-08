@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @duration.time %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @duration.price %>
+</p>
+
+<%= link_to 'Edit', edit_duration_path(@duration) %> |
+<%= link_to 'Back', durations_path %>
