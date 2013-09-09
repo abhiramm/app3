@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user.has_role? :admin
       admin_dashboard_path
     else
-      performers_performer_dashboard_path
+      edit_user_registration_path
     end
   end
   
