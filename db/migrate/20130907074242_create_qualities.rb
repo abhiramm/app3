@@ -5,6 +5,5 @@ class CreateQualities < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :qualities, :name
   end
 end

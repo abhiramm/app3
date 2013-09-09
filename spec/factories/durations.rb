@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :duration do
     time "MyString"
+    price 1
   end
 end

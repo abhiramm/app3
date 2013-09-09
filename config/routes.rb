@@ -1,4 +1,10 @@
 Custom::Application.routes.draw do
+  resources :delivery_times
+
+  resources :durations
+
+  resources :qualities
+
   resources :custom_videos
   resources :orders
   resources :item_categories

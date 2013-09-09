@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :quality do
-    type ""
+    name "MyString"
   end
 end
