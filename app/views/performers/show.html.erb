@@ -36,7 +36,9 @@
                   <%= label_tag "category", category.name, :class => "pull-left category_label" %> 
                 </div>
                 <div id="category_text_<%= category.id%>" class="category_text">
-                  <%= number_field_tag "amount", @amount, :class => "pull-left input-medium" %>
+                  
+                  <%= number_field_tag "amount", @amount, :class => "pull-left input-medium", :required => true %>
+                  
                   <%= hidden_field_tag "category_id", category.id %>
                   <%= submit_tag "Update" %>
                  </div>

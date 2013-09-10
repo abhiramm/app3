@@ -11,9 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.min
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
 //= require multi-select
-
+//= require jquery-fileupload
+//= require jquery.ui.all
+//= require jquery.modal.min
 //= require_tree .
+

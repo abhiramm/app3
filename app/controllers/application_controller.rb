@@ -22,10 +22,11 @@ class ApplicationController < ActionController::Base
   end
   
    def after_sign_in_path_for(resource_or_scope)
-      if current_user.has_role? :admin
-        admin_dashboard_path
-      else
+      if current_user.has_role? :performer
         performers_performer_dashboard_path
+      else
+        admin_dashboard_path
+        
       end 
    end
 

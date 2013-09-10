@@ -11,7 +11,11 @@
  *= require_self
  
  *= require multi-select
+ *= require jquery.ui.all
+ *= require jquery.modal
  *= require_tree .
+
+ 
 */
 
 .content {
