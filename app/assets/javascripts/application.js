@@ -16,7 +16,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require multi-select
-//= require jquery-fileupload
+
 //= require jquery.ui.all
 //= require jquery.modal.min
 //= require_tree .

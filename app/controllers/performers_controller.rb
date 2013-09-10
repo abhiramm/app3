@@ -86,11 +86,11 @@ class PerformersController < ApplicationController
     #@ccp = ClipCategoryPerformer.create(:clip_category_id => params[:category], :performer_id => current_user.performer.id, :amount => params[:amount].to_f)
     if params[:delivery_time] == "1"
       puts "checked"
-      @dp = DeliveryTime.create(:delivery_time_id => params[:delivery_time_id], :performer_id => current_user.performer.id, :amount => params[:amount].to_f)
+      @dp = DeliveryTimePerformer.create(:delivery_time_id => params[:delivery_time_id], :performer_id => current_user.performer.id, :amount => params[:amount].to_f)
     else
       puts "unchecked"
 #      d = ClipCategoryPerformer.find_by(:clip_category_id == params[:category] && :performer_id == current_user.performer.id)
-       d = DeliveryTime.where("delivery_time_id = ? AND performer_id = ?", params[:delivery_time_id], current_user.performer.id )
+       d = DeliveryTimePerformer.where("delivery_time_id = ? AND performer_id = ?", params[:delivery_time_id], current_user.performer.id )
        d.destroy_all
     end
      #puts checkbox(category).checked
