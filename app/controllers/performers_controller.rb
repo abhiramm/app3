@@ -33,6 +33,7 @@ class PerformersController < ApplicationController
       puts "unchecked"
 #      d = ClipCategoryPerformer.find_by(:clip_category_id == params[:category] && :performer_id == current_user.performer.id)
        d = ClipCategoryPerformer.where("clip_category_id = ? AND performer_id = ?", params[:category_id], current_user.performer.id )
+
        d.destroy_all
     end
      #puts checkbox(category).checked

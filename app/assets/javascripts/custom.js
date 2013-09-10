@@ -15,7 +15,7 @@ $("#categories_multiselect").multiSelect({
     return false;
   });
   
-  $(".category_check").change(function(){
+  $(".category_check").on("change", function(){
   //alert("abhiram")
     // alert()
     //alert($(this).data('category'))
@@ -23,7 +23,7 @@ $("#categories_multiselect").multiSelect({
 
   });
   
-  $(".quality_check").change(function(){
+  $(".quality_check").on("change", function(){
   //alert("abhiram")
     // alert()
     //alert($(this).data('category'))
@@ -31,7 +31,7 @@ $("#categories_multiselect").multiSelect({
 
   });
   
-  $(".duration_check").change(function(){
+  $(".duration_check").on("change", function(){
   //alert("abhiram")
     // alert()
     //alert($(this).data('category'))
@@ -39,7 +39,7 @@ $("#categories_multiselect").multiSelect({
 
   });
 
-    $(".delivery_time_check").change(function(){
+    $(".delivery_time_check").on("change", function(){
   //alert("abhiram")
     // alert()
     //alert($(this).data('category'))

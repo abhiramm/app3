@@ -2,18 +2,32 @@
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors resource %>
-  <%= f.input :name, :autofocus => true %>
+  <%# f.input :name, :autofocus => true %>
   <%= f.input :email, :required => true %>
   <%= f.input :password, :required => true %>
   <%= f.input :password_confirmation, :required => true %>
    <div class="field">
+    
+    <div class="controls performer_check_box">
     <%= f.label :roles %>
-    <div class="controls">
-    <% Role.all.each do |role| %>
-        <%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id) %>
+    <% Role.where(:name => "performer").each do |role| %>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id), :checked => true %>
         <%= role.name %><br />
     <% end %>
     </div>
+   <% @user.build_performer  unless @user.performer %>
+      <%= f.fields_for :performer, @user.performer do |per| %>
+      <%= per.input :first_name %>
+      <%# per.input :white_label_id %>
+      <%= per.association :location, :collection => Location.all, :prompt => "Location" %>
+      <%= per.input :avatar %>
+      <%# per.input :location %>
+      <%# per.label "Categories" %>
+      <%# per.association :clip_categories, :label => "Categories", :wrapper_html => { :id => "categories_multiselect", :multiselect => true }%>
+      <%= per.input :photo_id %>
+      <%= per.input :profile_thumb %>
+      <%= per.input :profile_gif %>
+    <% end %>
   </div>
   <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
 <% end %>
