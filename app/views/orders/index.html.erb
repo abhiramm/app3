@@ -1,45 +1,167 @@
-<h1>Listing orders</h1>
+<div class="container">
+  <div class="span 8">
+      <h3>Incomplete Orders</h3>
+        <table id="order_table" class="table table-hover">
+        
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Performer</th>
+              <th>Duration</th>
+              <th>Quality</th>
+              <th>Delivery</th>
+              <th>Category</th>
+              <th>Select a video to upload for the order</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
 
-<table id="order_table">
-  <thead>
-    <tr>
-      <th>Location</th>
-      <th>Performer</th>
-      <th>Duration</th>
-      <th>Quality</th>
-      <th>Delivery</th>
-      <th>Category</th>
-      <th>Select a video to upload for the order</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+            <% if !CustomVideo.find_by_order_id(order.id)%>
+             <tr>
+                <td><%= order.location.name %></td>
+                <td><%= order.performer.first_name %></td>
+                <td><%= order.duration.time %></td>
+                <td><%= order.quality.name %></td>
+                <td><%= order.delivery_time.duration %></td>
+                <td><%= order.clip_category.name %></td>
+                <td>
+                <%= simple_form_for(@custom_video) do |f| %>
+  <%= f.error_notification %>
+    <%= f.file_field :path%><br/><br>
+    <%= f.hidden_field :order_id,:value => order.id %>
+    <%= f.button :submit, :value=>"Save", :class=>"btn btn-success" %>
+  <% end %></td>
 
-  <tbody>
-    <% @orders.each do |order| %>
-     <tr>
-        <td><%= order.location.name %></td>
-        <td><%= order.performer.first_name %></td>
-        <td><%= order.duration.time %></td>
-        <td><%= order.quality.name %></td>
-        <td><%= order.delivery_time.duration %></td>
-        <td><%= order.clip_category.name %></td>
-        <td><%= render 'form_video'%></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                <% if can? :show, @order %>
+                  <td><%= link_to 'Show', order %></td>
+                <% end %>
+                <% if can? :update, @order %>
+                  <td><%= link_to 'Edit', edit_order_path(order) %></td>
+                 <% end %>
+                <% if can? :destroy, @order %>
+                  <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <%else %>
+                <% next %>
+              <%end %>
+                <% end -%>
+              </tr>
+            <% end %>
+          </tbody>
+        </table><br/>
+        <h3>Completed Orders</h3>
+        <table class="table table-hover" id="order_table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Performer</th>
+                <th>Duration</th>
+                <th>Quality</th>
+                <th>Delivery</th>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+            <% if CustomVideo.find_by_order_id(order.id)%>
+             <tr>
+                <td><%= order.location.name %></td>
+                <td><%= order.performer.first_name %></td>
+                <td><%= order.duration.time %></td>
+                <td><%= order.quality.name %></td>
+                <td><%= order.delivery_time.duration %></td>
+                <td><%= order.clip_category.name %></td>
+                <td>
+                <%= simple_form_for(@custom_video) do |f| %>
+  <%= f.error_notification %>
+    <%= f.file_field :path%><br/><br>
+    <%= f.hidden_field :order_id,:value => order.id %>
+    <%= f.button :submit, :value=>"Save", :class=>"btn btn-success" %>
+  <% end %></td>
+
+                <% if can? :show, @order %>
+                  <td><%= link_to 'Show', order %></td>
+                <% end %>
+                <% if can? :update, @order %>
+                  <td><%= link_to 'Edit', edit_order_path(order) %></td>
+                 <% end %>
+                <% if can? :destroy, @order %>
+                  <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <%else %>
+                <% next %>
+              <%end %>
+                <% end -%>
+              </tr>
+            <% end %>
+          </tbody>
+
+          </table><br/>
+          <h3>Orders To Refund</h3>
+        <table class="table table-hover" id="order_table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Performer</th>
+                <th>Duration</th>
+                <th>Quality</th>
+                <th>Delivery</th>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+              </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+            <% if order.delivery_time.duration="Standard(14 days)"%>
+            <% var1=14 %>
+            <% else %>
+            <% var1=7 %>
+            <% end %>
+            <% if CustomVideo.find_by_order_id(order.id) and Time.now-var1.days == order.created_at.to_date+var1.days%>
+             <tr>
+                <td><%= order.location.name %></td>
+                <td><%= order.performer.first_name %></td>
+                <td><%= order.duration.time %></td>
+                <td><%= order.quality.name %></td>
+                <td><%= order.delivery_time.duration %></td>
+                <td><%= order.clip_category.name %></td>
+                <td>
+                <%= simple_form_for(@custom_video) do |f| %>
+  <%= f.error_notification %>
+    <%= f.file_field :path%><br/><br>
+    <%= f.hidden_field :order_id,:value => order.id %>
+    <%= f.button :submit, :value=>"Save", :class=>"btn btn-success" %>
+  <% end %></td>
+
+                <% if can? :show, @order %>
+                  <td><%= link_to 'Show', order %></td>
+                <% end %>
+                <% if can? :update, @order %>
+                  <td><%= link_to 'Edit', edit_order_path(order) %></td>
+                 <% end %>
+                <% if can? :destroy, @order %>
+                  <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <%else %>
+                <% next %>
+              <%end %>
+                <% end -%>
+              </tr>
+            <% end %>
+          </tbody>
+
+          </table>
 
 
+        <br>
 
-<br>
-
-<% if user_signed_in?  %>
-  
-<% end %>
-
+        <% if user_signed_in?  %>
+          
+        <% end %>
+  </div>
+</div>
 <%# link_to 'New Order', new_order_path %>

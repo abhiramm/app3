@@ -1,5 +1,6 @@
 <%= simple_form_for(@custom_video) do |f| %>
   <%= f.error_notification %>
     <%= f.file_field :path%><br/><br>
+    <%# f.hidden_field :order_id,:value => @order.id %>
     <%= f.button :submit, :value=>"Save", :class=>"btn btn-success" %>
   <% end %>

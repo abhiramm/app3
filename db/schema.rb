@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907074439) do
+ActiveRecord::Schema.define(version: 20130910090541) do
 
   create_table "clip_categories", force: true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20130907074439) do
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "delivery_time_performers", force: true do |t|
@@ -102,7 +103,6 @@ ActiveRecord::Schema.define(version: 20130907074439) do
     t.integer  "delivery_time_id"
     t.integer  "clip_category_id"
     t.integer  "total"
-    t.integer  "custom_video_id"
     t.string   "email"
   end
 

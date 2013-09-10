@@ -28,8 +28,6 @@ class CustomVideosController < ApplicationController
 
     respond_to do |format|
       if @custom_video.save
-        Notificationemail.uploaded_customer(current_user)
-        Notificationemail.uploaded_performer()
         format.html { redirect_to @custom_video, notice: 'Custom video was successfully created.' }
         format.json { render action: 'show', status: :created, location: @custom_video }
       else
@@ -71,6 +69,6 @@ class CustomVideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def custom_video_params
-      params.require(:custom_video).permit(:path)
+      params.require(:custom_video).permit(:path,:order_id)
     end
 end
