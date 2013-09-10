@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<div class = "container">
 <table id="order_table">
   <thead>
     <tr id="order_table_tr">
@@ -22,12 +23,19 @@
         <td><%= @order.delivery_time.duration %></td>
         <td><%= @order.clip_category.name %></td>
         <% if user_signed_in?  %>
-        <td><%= render 'form_video'%></td>
+        <td><%= simple_form_for(@custom_video) do |f| %>
+  <%= f.error_notification %>
+    <%= f.file_field :path%><br/><br>
+    <%= f.hidden_field :order_id,:value => @order.id %>
+    <%= f.button :submit, :value=>"Save", :class=>"btn btn-success" %>
+  <% end %></td>
         <% end %>
         <td></td>
       </tr>
   </tbody>
 </table>
+  
+</div>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
 <p>        <%= render 'form_order' %>

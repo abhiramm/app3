@@ -33,8 +33,6 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        Notificationemail.order_customer(@order)
-        Notificationemail.order_performer(@order)
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render action: 'show', status: :created, location: @order }
       else
@@ -49,8 +47,6 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-         Notificationemail.order_customer(@order)
-        Notificationemail.order_performer(@order)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else
