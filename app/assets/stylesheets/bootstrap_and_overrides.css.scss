@@ -17,3 +17,48 @@ label{
 select{
     width: 300px;
 }
+.modal {
+  display: none;
+  width: 800px;
+  height:450px;	
+  background: #fff;
+  padding: 30px 30px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -ms-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+  border:6px solid #ccc;
+  text-align:center;
+  background:#000;
+  color:#CCCCCC;
+}
+#popup-wrapper img
+{
+	width:320px;
+	height:100px;
+}
+#popup-wrapper h2
+{
+	color:#D23A79;
+	font-size: 43px;
+font-style: italic;
+font-weight: bold;
+
+}
+
+#popup-wrapper p{
+	padding:10px;
+	font-size: 14px;
+    line-height: 20px;
+}
+
+#popup-wrapper a {
+	color:#D23A79;
+	padding:10px;
+}

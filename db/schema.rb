@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906025747) do
+ActiveRecord::Schema.define(version: 20130907074439) do
 
   create_table "clip_categories", force: true do |t|
     t.string   "name"
@@ -71,8 +71,6 @@ ActiveRecord::Schema.define(version: 20130906025747) do
     t.datetime "updated_at"
   end
 
-  add_index "durations", ["time"], name: "index_durations_on_time"
-
   create_table "item_categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -127,8 +125,6 @@ ActiveRecord::Schema.define(version: 20130906025747) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "qualities", ["name"], name: "index_qualities_on_name"
 
   create_table "quality_performers", force: true do |t|
     t.integer  "quality_id"

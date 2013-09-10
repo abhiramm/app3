@@ -46,3 +46,7 @@ group :test do
   gem 'email_spec'
 end
 gem 'capistrano'
+gem 'therubyracer'
+gem 'execjs'
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
