@@ -1,11 +1,11 @@
 <%= image_tag 'custom4u-logo.png' , :class => 'brand' %>
 <ul class="nav top-bar pull-right">
   <% if user_signed_in? %>
-  <% if !Performer.last.id.nil? %>
+  <%# if !Performer.last.id.nil? %>
     <li>
       <%# link_to raw("Dashboard"), performer_path(:id => Performer.last ), :method => :get %>
     </li>
-  <% end %>
+  <%# end %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
     </li>

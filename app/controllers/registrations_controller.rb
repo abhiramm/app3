@@ -12,10 +12,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    if current_user.has_role? :admin
-      admin_dashboard_path
-    else
+    if current_user.has_role? :performer
       edit_user_registration_path
+    else
+      admin_dashboard_path  
     end
   end
   
